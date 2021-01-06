@@ -39,13 +39,16 @@ require('dotenv').config();
   // await page.waitForSelector('.title');
   const books = await page.$$eval('.title', (elements) => {
     return elements.map((element, index) => {
-      const book = element.textContent.trim().split('/ ');
+      const book = element.textContent
+        .trim()
+        .split('/ ')
+        .filter((item) => item !== '' && item !== null);
       const title = book[0];
+      // const author = book[1];
       return title;
-      const author = book[1];
-
       return {
         title,
+        author,
         value: index,
         // desc: desc,
       };
