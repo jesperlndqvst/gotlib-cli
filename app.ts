@@ -1,10 +1,9 @@
 'use strict';
 
-import puppeteer from 'puppeteer';
-import prompts from 'prompts';
-import dotenv from 'dotenv';
-dotenv.config();
-import { waitForAndType } from './functions/waitForAndType.js';
+const puppeteer = require('puppeteer');
+const prompts = require('prompts');
+require('dotenv').config();
+const waitForAndType = require('./functions/waitForAndType.js');
 
 (async () => {
   // START
@@ -42,24 +41,25 @@ import { waitForAndType } from './functions/waitForAndType.js';
     let isSure = false;
 
     while (!isSure) {
-      const titles = await page.$$eval('.dpBibTitle', (elements) =>
-        elements.map((element) => element.children[0].textContent.trim())
+      const titles = await page.$$eval('.dpBibTitle', (elements: any) =>
+        elements.map((element: any) => element.children[0].textContent.trim())
       );
 
-      const auhtors = await page.$$eval('.dpBibAuthor', (auhtor) =>
-        auhtor.map((auhtor) => auhtor.textContent.trim())
+      const auhtors = await page.$$eval('.dpBibAuthor', (auhtor: any) =>
+        auhtor.map((auhtor: any) => auhtor.textContent.trim())
       );
 
-      const years = await page.$$eval('.itemMediaYear', (year) =>
-        year.map((year) => year.textContent.trim())
+      const years = await page.$$eval('.itemMediaYear', (year: any) =>
+        year.map((year: any) => year.textContent.trim())
       );
 
       const availabilityMessages = await page.$$eval(
         '.availabilityMessage',
-        (message) => message.map((message) => message.textContent.trim())
+        (message: any) =>
+          message.map((message: any) => message.textContent.trim())
       );
 
-      const books = titles.map((title, i) => {
+      const books = titles.map((title: any, i: any) => {
         return {
           title,
           description: `  ${auhtors[i]} ${years[i]}
@@ -86,7 +86,7 @@ import { waitForAndType } from './functions/waitForAndType.js';
 
       if (value) {
         isSure = true;
-        return books.find((item) => item.id === book);
+        return books.find((item: any) => item.id === book);
       }
     }
   };

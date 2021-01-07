@@ -2,9 +2,9 @@
   "name": "biblioteket-puppet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "npx ts-node app.ts"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "prompts": "^2.4.0",
-    "puppeteer": "^5.5.0"
-  },
-  "type": "module"
+    "puppeteer": "^5.5.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
 }

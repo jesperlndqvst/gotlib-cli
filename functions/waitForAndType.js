@@ -1,4 +1,8 @@
-export const waitForAndType = async (page, selector, input) => {
+'use strict';
+
+const waitForAndType = async (page, selector, input) => {
   await page.waitForSelector(selector);
   await page.type(selector, input);
 };
+
+module.exports = waitForAndType;
