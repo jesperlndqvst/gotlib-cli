@@ -1,15 +1,12 @@
 'use strict';
 
-const puppeteer = require('puppeteer');
-const prompts = require('prompts');
-require('dotenv').config();
+import puppeteer from 'puppeteer';
+import prompts from 'prompts';
+import dotenv from 'dotenv';
+dotenv.config();
+import { waitForAndType } from './functions/waitForAndType.js';
 
 (async () => {
-  const waitForAndType = async (selector, input) => {
-    await page.waitForSelector(selector);
-    await page.type(selector, input);
-  };
-
   // START
   console.log('STARTING...');
   const browser = await puppeteer.launch();
@@ -19,8 +16,12 @@ require('dotenv').config();
   );
 
   // ENTER USERNAME AND PASSWORD
-  await waitForAndType('input#code.loginField', process.env.GOTLIB_USERNAME);
-  await waitForAndType('input#pin.loginField', process.env.GOTLIB_PIN);
+  await waitForAndType(
+    page,
+    'input#code.loginField',
+    process.env.GOTLIB_USERNAME
+  );
+  await waitForAndType(page, 'input#pin.loginField', process.env.GOTLIB_PIN);
   await page.keyboard.press('Enter');
   await page.waitForNavigation();
 
@@ -30,7 +31,7 @@ require('dotenv').config();
     name: 'name',
     message: 'What book do you want to reserve?',
   });
-  await waitForAndType('input#searchString', response.name);
+  await waitForAndType(page, 'input#searchString', response.name);
   await page.keyboard.press('Enter');
   await page.waitForNavigation();
 
