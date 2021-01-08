@@ -1,5 +1,5 @@
 {
-  "name": "biblioteket-puppet",
+  "name": "gotlib-cli",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jesperlndqvst/biblioteket-puppet.git"
+    "url": "git+https://github.com/jesperlndqvst/gotlib-cli.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jesperlndqvst/biblioteket-puppet/issues"
+    "url": "https://github.com/jesperlndqvst/gotlib-cli/issues"
   },
-  "homepage": "https://github.com/jesperlndqvst/biblioteket-puppet#readme",
+  "homepage": "https://github.com/jesperlndqvst/gotlib-cli#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
     "prompts": "^2.4.0",
