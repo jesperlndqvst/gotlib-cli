@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom"],
-    "strict": true
-  }
+    "module": "commonjs",
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
+    "allowJs": true
+  },
+  "exclude": ["node_modules", "public", ".cache"]
 }

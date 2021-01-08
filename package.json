@@ -23,5 +23,9 @@
     "puppeteer": "^5.5.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.0.9",
+    "@types/puppeteer": "^5.4.2"
   }
 }
