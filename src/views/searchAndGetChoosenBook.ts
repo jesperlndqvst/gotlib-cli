@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { waitForAndType } from '../functions/waitForAndType';
 dotenv.config();
 
-const search = async (page: puppeteer.Page) => {
+const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
   const response = await prompts({
     type: 'text',
     name: 'name',
@@ -69,9 +69,7 @@ const search = async (page: puppeteer.Page) => {
       }
     }
   };
-
-  const choosenBook = await getChoosenBook();
-  console.log(`You have reserved ${choosenBook.title}`);
+  return await getChoosenBook();
 };
 
-export default search;
+export default searchAndGetChoosenBook;
