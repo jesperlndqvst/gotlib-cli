@@ -24,6 +24,11 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
       const titles = await page.$$eval('.dpBibTitle', (elements: Element[]) =>
         elements.map((title: Element) => title.children[0].textContent!.trim())
       );
+      const links = await page.$$eval(
+        '.dpBibTitle > .title > a[href]',
+        (elements: Element[]) =>
+          elements.map((link: Element) => link.getAttribute('href'))[0]
+      );
 
       const auhtors = await page.$$eval('.dpBibAuthor', (elements: Element[]) =>
         elements.map((auhtor: Element) => auhtor.textContent!.trim())
@@ -43,6 +48,7 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
           title,
           description: `  ${auhtors[i]} ${years[i]}
         ${availabilityMessages[i]}`,
+          links: `https://encore.gotlib.goteborg.se/${links}`,
           id: i,
         };
       });
