@@ -13,8 +13,8 @@ const login = async (page: puppeteer.Page) => {
   )
   await waitForAndType(page, 'input#pin.loginField', process.env.GOTLIB_PIN!)
   await page.keyboard.press('Enter')
-  await page.waitForNavigation()
   spinner.succeed()
+  return
 }
 
 export default login

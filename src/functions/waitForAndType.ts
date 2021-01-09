@@ -8,5 +8,5 @@ export const waitForAndType = async (
   input: string
 ): Promise<void> => {
   await page.waitForSelector(selector)
-  await page.type(selector, input)
+  await page.type(selector, input, { delay: 50 })
 }

@@ -17,43 +17,43 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
   const spinner = ora('Searching...').start()
   await page.waitForNavigation()
 
-  // GET SEARCH RESULT
   const getChoosenBook = async () => {
     let isSure: boolean = false
 
     while (!isSure) {
-      const titles = await page.$$eval('.dpBibTitle', (elements: Element[]) =>
-        elements.map((title: Element) => title.children[0].textContent!.trim())
-      )
-      const links = await page.$$eval(
-        '.dpBibTitle > .title > a[href]',
+      const books: any[] = await page.$$eval(
+        '.searchResult',
         (elements: Element[]) =>
-          elements.map((link: Element) => link.getAttribute('href'))[0]
+          elements
+            .map((book: Element) => {
+              const title = book.children[0].lastElementChild?.children[0].textContent?.trim()
+              const author = book.children[0].lastElementChild?.children[2].textContent?.trim()
+              const availabilityMessage = book.children[0].lastElementChild?.children[4]?.children[0]?.children[0]?.children[0]?.textContent?.trim()
+              const type = book.children[0].lastElementChild?.children[3].children[1].textContent?.trim()
+              const year = book.children[0].lastElementChild?.children[3].lastElementChild?.textContent?.trim()
+              const isAbleToReserve = book.children[1].children[0].children[0]
+                .children[0].children[0].children[0]?.children[0]
+                ? true
+                : false
+
+              const slug = book.children[0].lastElementChild?.innerHTML.match(
+                /href="([^"]*)/
+              )?.[1]
+
+              return {
+                title,
+                description: `  ${author} ${year}
+          ${availabilityMessage}`,
+                year,
+                type,
+                link: slug && `https://encore.gotlib.goteborg.se${slug}`,
+                isAbleToReserve,
+              }
+            })
+            .filter(
+              (book) => book.type === 'Bok' && book.link && book.isAbleToReserve
+            )
       )
-
-      const auhtors = await page.$$eval('.dpBibAuthor', (elements: Element[]) =>
-        elements.map((auhtor: Element) => auhtor.textContent!.trim())
-      )
-
-      const years = await page.$$eval('.itemMediaYear', (elements: Element[]) =>
-        elements.map((year: Element) => year.textContent!.trim())
-      )
-
-      const availabilityMessages = await page.$$eval(
-        '.availabilityMessage',
-        (message) => message.map((message) => message.textContent!.trim())
-      )
-
-      const books: any[] = titles.map((title: string, i: number) => {
-        return {
-          title,
-          description: `  ${auhtors[i]} ${years[i]}
-        ${availabilityMessages[i]}`,
-          links: `https://encore.gotlib.goteborg.se/${links}`,
-          id: i,
-        }
-      })
-
       const { book } = await prompts({
         type: 'select',
         name: 'book',
@@ -72,7 +72,7 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
 
       if (value) {
         isSure = true
-        return books.find((item) => item.id === book)
+        return books[book]
       }
     }
   }
