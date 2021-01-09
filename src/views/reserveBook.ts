@@ -1,14 +1,11 @@
 import puppeteer from 'puppeteer'
 import ora from 'ora'
 import login from './login'
+import searchAndGetChoosenBook from './searchAndGetChoosenBook'
 
-interface Book {
-  title: string
-  description: string
-  id: number
-  link: any
-}
-const reserveBook = async (page: puppeteer.Page, book: Book) => {
+const reserveBook = async (page: puppeteer.Page) => {
+  const book = await searchAndGetChoosenBook(page)
+  if (!book) return
   const spinner = ora('Reserving book...').start()
   await page.goto(book.link)
   await page.waitForSelector('#genericLink')

@@ -11,6 +11,7 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
     name: 'name',
     message: 'What book do you want to reserve?',
   })
+  if (response.name === '') return
   await waitForAndType(page, 'input#searchString', response.name)
   await page.keyboard.press('Enter')
 
@@ -54,13 +55,21 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
               (book) => book.type === 'Bok' && book.link && book.isAbleToReserve
             )
       )
-      const { book } = await prompts({
+      const { choice } = await prompts({
         type: 'select',
-        name: 'book',
+        name: 'choice',
         message: 'Pick a book',
-        choices: books,
+        choices: [
+          ...books,
+          {
+            value: 'Exit',
+            description: 'Close the application',
+          },
+        ],
       })
-
+      if (choice === 'Exit') {
+        return
+      }
       const { value } = await prompts({
         type: 'toggle',
         name: 'value',
@@ -72,7 +81,7 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
 
       if (value) {
         isSure = true
-        return books[book]
+        return books[choice]
       }
     }
   }
