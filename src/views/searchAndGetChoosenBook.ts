@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer'
 import prompts from 'prompts'
 import dotenv from 'dotenv'
 import { waitForAndType } from '../functions/waitForAndType'
+import ora from 'ora'
 dotenv.config()
 
 const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
@@ -13,7 +14,7 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
   await waitForAndType(page, 'input#searchString', response.name)
   await page.keyboard.press('Enter')
 
-  console.log('SEARCHING FOR BOOK...')
+  const spinner = ora('Searching...').start()
   await page.waitForNavigation()
 
   // GET SEARCH RESULT
@@ -75,6 +76,7 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
       }
     }
   }
+  spinner.succeed()
   return await getChoosenBook()
 }
 

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jesperlndqvst/gotlib-cli#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "ora": "^5.2.0",
     "prompts": "^2.4.0",
     "puppeteer": "^5.5.0",
     "ts-node": "^9.1.1",

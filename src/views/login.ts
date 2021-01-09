@@ -1,10 +1,11 @@
 import puppeteer from 'puppeteer'
 import dotenv from 'dotenv'
 import { waitForAndType } from '../functions/waitForAndType'
+import ora from 'ora'
 dotenv.config()
 
 const login = async (page: puppeteer.Page) => {
-  console.log('LOGGING IN TO GOTLIB...')
+  const spinner = ora('Logging in...').start()
   await waitForAndType(
     page,
     'input#code.loginField',
@@ -13,6 +14,7 @@ const login = async (page: puppeteer.Page) => {
   await waitForAndType(page, 'input#pin.loginField', process.env.GOTLIB_PIN!)
   await page.keyboard.press('Enter')
   await page.waitForNavigation()
+  spinner.succeed()
 }
 
 export default login
