@@ -1,8 +1,8 @@
 import puppeteer from 'puppeteer'
 import dotenv from 'dotenv'
+dotenv.config()
 import { waitForAndType } from '../functions/waitForAndType'
 import ora from 'ora'
-dotenv.config()
 
 const login = async (page: puppeteer.Page) => {
   const spinner = ora('Logging in...').start()

@@ -17,7 +17,6 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
 
   const spinner = ora('Searching...').start()
   await page.waitForNavigation()
-
   const getChoosenBook = async () => {
     let isSure: boolean = false
 

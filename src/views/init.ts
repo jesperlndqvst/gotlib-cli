@@ -5,7 +5,7 @@ dotenv.config()
 
 const init = async () => {
   const spinner = ora('Starting up...').start()
-  const browser: puppeteer.Browser = await puppeteer.launch()
+  const browser: puppeteer.Browser = await puppeteer.launch({ headless: false })
   const page: puppeteer.Page = await browser.newPage()
   await page.goto('https://www.gotlib.goteborg.se/')
   spinner.succeed()
