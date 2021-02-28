@@ -2,7 +2,7 @@
 
 Have you also always wanted to be able to borrow your books through the terminal?
 **Gotlib Cli** makes this possible and is the result of me wanting to play around with the web scraping tool [Puppeteer](https://github.com/puppeteer/puppeteer).
-Built in Node.js and Typescript.
+Built with Typescript.
 
 ## About This Project
 
