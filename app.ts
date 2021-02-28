@@ -16,7 +16,7 @@ import account from './src/views/account'
       await account(page)
       break
     default:
-      await browser.close()
+      // await browser.close()
       break
   }
   // await browser.close()

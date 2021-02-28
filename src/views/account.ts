@@ -65,9 +65,9 @@ const account = async (page: puppeteer.Page) => {
   await checkBoxes[choice].click()
   const updateBtn = await page.$('input[name="requestUpdateHoldsSome"]')
   await updateBtn?.click()
-  // Check this selector cause its not working
-  // const yesBtn = await page.$$('input[name="updateholdssome"]')
-  // await yesBtn[0]?.click()
+  await page.waitForSelector('input[name="updateholdssome"]')
+  const yesBtn = await page.$$('input[name="updateholdssome"]')
+  await yesBtn[0]?.click()
 }
 
 export default account
