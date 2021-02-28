@@ -27,4 +27,4 @@ Built in Node.js and Typescript.
 
 ## License
 
-This assignment is licensed under the MIT License. You can get all the details [here](https://github.com/jesperlndqvst/gotlib-cli/LICENSE).
+This assignment is licensed under the MIT License. You can get all the details [here](https://github.com/jesperlndqvst/gotlib-cli/blob/master/LICENSE).
