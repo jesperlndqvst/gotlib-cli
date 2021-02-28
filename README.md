@@ -10,9 +10,10 @@ Built in Node.js and Typescript.
 * Search for books and borrow. 
 * Manage your account and cancel reservations you do not want. 
 
-## How to use it
+## How To Use It
 * 1. Clone the repository using `git clone https://github.com/jesperlndqvst/gotlib-cli` in your chosen terminal.
 * 2. Enter the project folder using the command `cd https://github.com/jesperlndqvst/gotlib-cli`.
+* 3. Create a file named `.env` in the root of the project and enter your library log in credentials that you use when you log in to [Gotlib](https://encore.gotlib.goteborg.se/) according to the `.env-template`.
 * 3. Run the project using the command `npm start`.
 
 ## Preview
