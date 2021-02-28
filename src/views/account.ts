@@ -4,7 +4,7 @@ import ora from 'ora'
 import cancelReservation from './cancelReservation'
 
 const account = async (page: puppeteer.Page) => {
-  const spinner = ora('Receiving account information...').start()
+  const spinner = ora('Connecting to gotlib...').start()
   await page.goto('https://www.gotlib.goteborg.se/patroninfo~S6*swe/')
   spinner.succeed()
   await login(page)
@@ -17,7 +17,13 @@ const account = async (page: puppeteer.Page) => {
       )[3]
   )
   await page.goto(`https://www.gotlib.goteborg.se${slug}`)
-  await page.waitForSelector('.patFuncEntry')
+  try {
+    await page.waitForSelector('.patFuncEntry', { timeout: 2000 })
+  } catch (error) {
+    secondSpinner.succeed()
+    console.log("> You don't have any reservations")
+    return
+  }
 
   const reservations: any[] = await page.$$eval(
     '.patFuncEntry',
@@ -30,6 +36,7 @@ const account = async (page: puppeteer.Page) => {
         return { id, checkBox, title, description }
       })
   )
+
   secondSpinner.succeed()
   await cancelReservation(page, reservations)
 }

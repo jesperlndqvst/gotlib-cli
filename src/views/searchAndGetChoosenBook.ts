@@ -54,6 +54,10 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
               (book) => book.type === 'Bok' && book.link && book.isAbleToReserve
             )
       )
+      if (books.length === 0) {
+        console.log("> Didn't find any books. Try again")
+        return
+      }
       const { choice } = await prompts({
         type: 'select',
         name: 'choice',

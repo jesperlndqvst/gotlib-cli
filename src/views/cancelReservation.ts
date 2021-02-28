@@ -39,10 +39,10 @@ const cancelReservation = async (page: puppeteer.Page, reservations: any[]) => {
   const checkBoxes = await page.$$('.patFuncMark input')
   await checkBoxes[choice].click()
   const updateBtn = await page.$('input[name="requestUpdateHoldsSome"]')
-  await updateBtn?.click()
+  await updateBtn!.click()
   await page.waitForSelector('input[name="updateholdssome"]')
   const yesBtn = await page.$$('input[name="updateholdssome"]')
-  await yesBtn[0]?.click()
+  await yesBtn[0].click()
   thirdSpinner.succeed()
 }
 
