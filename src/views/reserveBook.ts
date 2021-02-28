@@ -18,9 +18,15 @@ const reserveBook = async (page: puppeteer.Page) => {
   const feedbackMessage = await page.$eval('.feedbackMessage', (elemment) =>
     elemment.textContent?.trim()
   )
+  const messageArray = feedbackMessage?.split(' ')
+  const collectionPoint = messageArray![messageArray!.length - 1]
+    .split('.')
+    .join('')
   secondSpinner.succeed()
-  // TODO: TRANSLATE
-  console.log(feedbackMessage)
+
+  console.log(
+    `> Your reservation has been made. When your book is ready you can pick it up at ${collectionPoint}`
+  )
 }
 
 export default reserveBook
