@@ -13,7 +13,7 @@ Built in Node.js and Typescript.
 ## How To Use It
 
 - 1. Clone the repository using `git clone https://github.com/jesperlndqvst/gotlib-cli` in your chosen terminal.
-- 2. Enter the project folder using the command `cd https://github.com/jesperlndqvst/gotlib-cli`.
+- 2. Enter the project folder using the command `cd gotlib-cli`.
 - 3. Create a file named `.env` in the root of the project and enter your library log in credentials that you use when you log in to [Gotlib](https://encore.gotlib.goteborg.se/) according to the `.env-template`.
 - 4. Install the dependencies by running `npm install`.
 - 5. Run the project using `npm start`.
