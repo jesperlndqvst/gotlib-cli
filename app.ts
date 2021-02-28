@@ -5,19 +5,23 @@ import reserveBook from './src/views/reserveBook'
 import getMenuChoice from './src/views/getMenuChoice'
 import account from './src/views/account'
 ;(async (): Promise<void> => {
-  const { page, browser } = await init()
-  const choice = await getMenuChoice()
+  let isRunning: boolean = true
 
-  switch (choice) {
-    case 'Library':
-      await reserveBook(page)
-      break
-    case 'Account':
-      await account(page)
-      break
-    default:
-      // await browser.close()
-      break
+  while (isRunning) {
+    const { page, browser } = await init()
+    const choice = await getMenuChoice()
+
+    switch (choice) {
+      case 'Library':
+        await reserveBook(page)
+        break
+      case 'Account':
+        await account(page)
+        break
+      default:
+        await browser.close()
+        isRunning = false
+        break
+    }
   }
-  // await browser.close()
 })()

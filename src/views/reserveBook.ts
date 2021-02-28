@@ -19,6 +19,7 @@ const reserveBook = async (page: puppeteer.Page) => {
     elemment.textContent?.trim()
   )
   secondSpinner.succeed()
+  // TODO: TRANSLATE
   console.log(feedbackMessage)
 }
 

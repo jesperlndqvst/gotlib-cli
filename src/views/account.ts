@@ -31,8 +31,7 @@ const account = async (page: puppeteer.Page) => {
       })
   )
   secondSpinner.succeed()
-
-  cancelReservation(page, reservations)
+  await cancelReservation(page, reservations)
 }
 
 export default account
