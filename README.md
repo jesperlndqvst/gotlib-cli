@@ -20,7 +20,7 @@ Built in Node.js and Typescript.
 
 ## Preview
 
-https://user-images.githubusercontent.com/8672087/109429669-3bafdd00-79fd-11eb-8a57-fea6304e282b.mp4
+[![Watch the video](https://user-images.githubusercontent.com/8672087/109429669-3bafdd00-79fd-11eb-8a57-fea6304e282b.mp4)](https://user-images.githubusercontent.com/8672087/109429669-3bafdd00-79fd-11eb-8a57-fea6304e282b.mp4)
 
 ## Author
 
