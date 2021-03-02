@@ -51,7 +51,10 @@ const searchAndGetChoosenBook = async (page: puppeteer.Page) => {
               }
             })
             .filter(
-              (book) => book.type === 'Bok' && book.link && book.isAbleToReserve
+              (book) =>
+                (book.type === 'Bok' || book.type == 'Guideböcker') &&
+                book.link &&
+                book.isAbleToReserve
             )
       )
       if (books.length === 0) {
